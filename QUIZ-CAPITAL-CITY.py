@@ -2,24 +2,35 @@ import random
 
 # Vous pouvez enrechir la base de donnee
 # Sachant que chaque pas doit avoir le meme index que son capiatle dans les deux premieres liste
-liste_de_pays = ["France", "Italie", "Espagne", "Senegal", "Maroc"]
-liste_de_capitales = ["Paris", "Rome", "Madrid", "Dakar", "Raba"]
-liste_base = ["Napolie", "Marseille", "Bordeau", "Calabre", "Marakech", "Saint Louis", "Barcelone", "Thies"]
 liste_option = ["a", "b", "c", "d"]
+
+liste_pays_capitale = {
+    'Paris': 'France',
+    'Allemagne': 'Berlin',
+    'Itali': 'Rome',
+    'Royaume-Uni': 'Londre',
+    'États-Unis': 'Washington D.C.',
+    'Russie': 'Moscou',
+    'Chine': 'Pekin',
+    'Japon': 'tokyo',
+    'Inde': 'New Delhi',
+    'Brésil': 'Brasília'
+
+}
 
 
 def capitales_pays():
+
     # generer aleatoirement un pays et son capitale
-    pays = random.choice(liste_de_pays)
-    capitale = liste_de_capitales[liste_de_pays.index(pays)]
+    pays = random.choice(list(liste_pays_capitale))
+    capitale = liste_pays_capitale[pays]
 
     # supprimer le pays et son capitales des listes
-    liste_de_capitales.remove(capitale)
-    liste_de_pays.remove(pays)
+    del liste_pays_capitale[pays]
 
-    # geneger une liste aleatoire de trois capitles
-    liste_weights = [1 / len(liste_base) for i in range(1, len(liste_base) + 1)]
-    liste_elements = random.choices(liste_base, weights=liste_weights, k=3)
+    # geneger une liste aleatoire de trois capitales
+    liste_weights = [1 / len(liste_pays_capitale) for i in range(1, len(liste_pays_capitale) + 1)]
+    liste_elements = random.choices(list(liste_pays_capitale.values()), weights=liste_weights, k=3)
     liste_elements.append(capitale)
     random.shuffle(liste_elements)
 
